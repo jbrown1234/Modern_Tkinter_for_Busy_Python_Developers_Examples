@@ -6,5 +6,3 @@ Examples (with additional comments) from or created per the the content in the b
 
 Tkinter versions supported: 8.5, 8.6
 
-#python
-
