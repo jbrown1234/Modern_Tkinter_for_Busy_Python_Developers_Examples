@@ -72,7 +72,7 @@ def no_help(*args):
         menubar.entryconfig('Help', state='disabled')   # so we pass this in as the first parameter of the entryconfig()
     else:                                               # method and define its availability per the 'state' option.
         menubar.entryconfig(3, state='normal')          # It does appear that you can do the same using a key value.
-
+    print(menubar.entrycget('Help', 'label'))           # Example of how to get menubar option details.
 
 def no_about(*args):                                # While menu option items enabling/disabling shares the use of
     if noaboutmnustate.get() == 1:                  # entryconfig(), note how the items are expected to be zero-based
@@ -80,7 +80,7 @@ def no_about(*args):                                # While menu option items en
     else:                                           # target is accessed is probably not a big deal.
         #menu_help.entryconfig(0, state='normal')
         menu_help.entryconfig('About', state='normal')
-
+    print(menu_help.entrycget('About', 'command'))  # Example of how to get menu option item details.
 
 nohelpmnustate = IntVar()
 nohelpmnustate.set(0)
