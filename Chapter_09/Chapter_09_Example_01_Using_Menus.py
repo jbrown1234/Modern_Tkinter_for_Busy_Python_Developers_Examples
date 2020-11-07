@@ -66,6 +66,25 @@ def change_red(*args):
     print('Red')
 
 
+def no_help(*args):
+    if nohelpmnustate.get() == 1:                   # For disabling a menubar option, the index of the option is
+        menubar.entryconfig(3, state='disabled')    # not zero-based, but starts at 1. The Help menu is option 3
+    else:                                           # so we pass this in as the first parameter of the entryconfig()
+        menubar.entryconfig(3, state='normal')      # method and define its availability per the 'state' option.
+
+
+def no_about(*args):                                # While menu option items enabling/disabling shares the use of
+    if noaboutmnustate.get() == 1:                  # entryconfig(), note how the items are expected to be zero-based
+        menu_help.entryconfig(0, state='disabled')  # when referencing.
+    else:
+        menu_help.entryconfig(0, state='normal')
+
+
+nohelpmnustate = IntVar()
+nohelpmnustate.set(0)
+noaboutmnustate = IntVar()
+noaboutmnustate.set(0)
+
 # Create a menubar by first creating a menu widget then unsing the window's menu configuration option
 # to attach the menu widget to the window....
 menubar = Menu(root) # insert a menubar on the main window
@@ -78,12 +97,19 @@ menu_file = Menu(menubar, tearoff=0)        # Note the 'tearoff' option called o
                                             # the recommendation by the book
 menu_edit = Menu(menubar, tearoff=0)
 menu_help = Menu(menubar, tearoff=0)
-menubar.add_cascade(menu=menu_file, label='File')       # While the main menubar menus were shown to be added
-menubar.add_cascade(menu=menu_edit, label='Edit')       #   to the bar first in the book, other examples show
-menubar.add_cascade(menu=menu_help, label='Help')       #   adding the menu items being configured for each
-                                                        #   menu first. Experiment on your own and review conventions
-                                                        #   used by more seasoned programmers to determine
-                                                        #   what works best for you.
+menubar.add_cascade(menu=menu_file, label='File', underline=0)       # While the main menubar menus were shown to be added
+menubar.add_cascade(menu=menu_edit, label='Edit', underline=0)       #   to the bar first in the book, other examples show
+menubar.add_cascade(menu=menu_help, label='Help', underline=0)       #   adding the menu items being configured for each
+                                                                     #   menu first. Experiment on your own and review conventions
+                                                                     #   used by more seasoned programmers to determine
+                                                                     #   what works best for you.
+                                                                     # Something of interest to note: the underline option
+                                                                     #   helps to add shortcut key action to the menu item
+                                                                     #   selection. However, what I see on Windows is that
+                                                                     #   the underline doesn't show up until (or unless)
+                                                                     #   the menu bar has focus. Not being able to see
+                                                                     #   what the alt+key combo might be somewhat defeats
+                                                                     #   the purpose of having it available.
 menu_file.add_command(label='New', command=new_file, accelerator="Ctrl+f")  # Check out the add of the accelerator tag
 root.bind("<Control-f>", new_file)  # ...and this statement binds the accelerator key combo to the function
 menu_file.add_command(label='Open', command=open_file, accelerator="Ctrl+o")
@@ -111,6 +137,10 @@ menu_edit.add_separator()
                                                                         # ones defined previously for this menu. Will
                                                                         # leave figuring out how to split things up
                                                                         # for a future investigation.
+menu_edit.add_checkbutton(label="No Help", command=no_help, variable=nohelpmnustate)    # Added these two menu options
+menu_edit.add_checkbutton(label="No About", command=no_about, variable=noaboutmnustate) # to see how they operate. See
+                                                                                        # their command functions above
+                                                                                        # for additional peculiarities.
 
 menu_help.add_command(label='About', command=show_about)
 
