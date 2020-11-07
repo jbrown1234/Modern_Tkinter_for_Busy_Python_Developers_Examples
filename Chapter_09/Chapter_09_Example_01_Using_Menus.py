@@ -84,13 +84,13 @@ menubar.add_cascade(menu=menu_help, label='Help')       #   adding the menu item
                                                         #   menu first. Experiment on your own and review conventions
                                                         #   used by more seasoned programmers to determine
                                                         #   what works best for you.
-menu_file.add_command(label='New', command=new_file, accelerator="Ctrl+f")
-root.bind("<Control-f>", new_file)
+menu_file.add_command(label='New', command=new_file, accelerator="Ctrl+f")  # Check out the add of the accelerator tag
+root.bind("<Control-f>", new_file)  # ...and this statement binds the accelerator key combo to the function
 menu_file.add_command(label='Open', command=open_file, accelerator="Ctrl+o")
 root.bind("<Control-o>", open_file)
 menu_file.add_command(label='Close', command=close_file, accelerator="Ctrl+c")
 root.bind("<Control-s>", close_file)
-menu_file.add_separator()
+menu_file.add_separator()           # add a separator to break things up a bit....
 menu_file.add_command(label='Exit', command=exit_file, accelerator="Ctrl+x")
 root.bind("<Control-x>", exit_file)
 
@@ -98,13 +98,19 @@ menu_edit.add_command(label='Copy', command=copy_text)
 menu_edit.add_command(label='Cut', command=cut_text)
 menu_edit.add_command(label='Paste', command=paste_text)
 menu_edit.add_separator()
-menu_edit.add_checkbutton(label="Bold", command=make_bold)
-menu_edit.add_checkbutton(label='Italics', command=make_italics)
+menu_edit.add_checkbutton(label="Bold", command=make_bold)              # Checkbuttons can be used to apply multiple
+menu_edit.add_checkbutton(label='Italics', command=make_italics)        # attributes as desired/needed
 menu_edit.add_checkbutton(label="Underline", command=make_underline)
 menu_edit.add_separator()
-menu_edit.add_radiobutton(label='Green', command=change_green)
-menu_edit.add_radiobutton(label='Blue', command=change_blue)
+menu_edit.add_radiobutton(label='Green', command=change_green)          # Radiobuttons make the user choose between
+menu_edit.add_radiobutton(label='Blue', command=change_blue)            # the options in a given group.
 menu_edit.add_radiobutton(label='Red', command=change_red)
+menu_edit.add_separator()
+#menu_edit.add_radiobutton(label='One')                                 # The separator does not implicitly break
+#menu_edit.add_radiobutton(label='Two')                                 # these additional radiobutton items from the
+                                                                        # ones defined previously for this menu. Will
+                                                                        # leave figuring out how to split things up
+                                                                        # for a future investigation.
 
 menu_help.add_command(label='About', command=show_about)
 
