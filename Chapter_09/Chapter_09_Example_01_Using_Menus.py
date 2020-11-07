@@ -67,17 +67,19 @@ def change_red(*args):
 
 
 def no_help(*args):
-    if nohelpmnustate.get() == 1:                   # For disabling a menubar option, the index of the option is
-        menubar.entryconfig(3, state='disabled')    # not zero-based, but starts at 1. The Help menu is option 3
-    else:                                           # so we pass this in as the first parameter of the entryconfig()
-        menubar.entryconfig(3, state='normal')      # method and define its availability per the 'state' option.
+    if nohelpmnustate.get() == 1:                       # For disabling a menubar option, the index of the option is
+        #menubar.entryconfig(3, state='disabled')       # not zero-based, but starts at 1. The Help menu is option 3
+        menubar.entryconfig('Help', state='disabled')   # so we pass this in as the first parameter of the entryconfig()
+    else:                                               # method and define its availability per the 'state' option.
+        menubar.entryconfig(3, state='normal')          # It does appear that you can do the same using a key value.
 
 
 def no_about(*args):                                # While menu option items enabling/disabling shares the use of
     if noaboutmnustate.get() == 1:                  # entryconfig(), note how the items are expected to be zero-based
-        menu_help.entryconfig(0, state='disabled')  # when referencing.
-    else:
-        menu_help.entryconfig(0, state='normal')
+        menu_help.entryconfig(0, state='disabled')  # when referencing. If using key values, the difference in how the
+    else:                                           # target is accessed is probably not a big deal.
+        #menu_help.entryconfig(0, state='normal')
+        menu_help.entryconfig('About', state='normal')
 
 
 nohelpmnustate = IntVar()
