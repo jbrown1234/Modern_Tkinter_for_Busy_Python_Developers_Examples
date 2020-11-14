@@ -18,6 +18,7 @@ from tkinter import ttk
 def btn_newwindow_press(*args):
     # stuff
     alt_window = Toplevel(root)
+    alt_window.iconbitmap(r"C:\\TMP\\sync.ico")
     btn_close = ttk.Button(alt_window, text="Close", command=alt_window.destroy)
     btn_close.grid(column=0, row=0, sticky=(N,W,E,S))
 
@@ -29,6 +30,15 @@ def btn_newwindow_press(*args):
 root = Tk()
 root.title("TopLevel Window Maker")
 root.geometry("400x300")
+root.iconbitmap("C:\\TMP\\settings.ico")    # This will allow you to set the icon shown in the top left
+                                            # corner of the Window, which should translate to this showing
+                                            # up in the task bar. The icon file should either kept local to
+                                            # the calling script or you need to provide the full path (as
+                                            # we have done here). More on this can be found per the following
+                                            # links:
+                                            # https://www.delftstack.com/howto/python-tkinter/how-to-set-window-icon-in-tkinter/
+                                            # https://stackoverflow.com/questions/18537918/why-isnt-ico-file-defined-when-setting-windows-icon/18538416#18538416
+
 
 # create base widgets...
 lbl_dumblabel = ttk.Label(root, text="Dumb Label...")
