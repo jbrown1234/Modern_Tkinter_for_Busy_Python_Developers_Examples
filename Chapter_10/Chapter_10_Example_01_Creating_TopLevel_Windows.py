@@ -38,7 +38,12 @@ root.iconbitmap("C:\\TMP\\settings.ico")    # This will allow you to set the ico
                                             # links:
                                             # https://www.delftstack.com/howto/python-tkinter/how-to-set-window-icon-in-tkinter/
                                             # https://stackoverflow.com/questions/18537918/why-isnt-ico-file-defined-when-setting-windows-icon/18538416#18538416
-
+                                            # Also note that this example references the icon path on the user's
+                                            # computer, so it is highly likely that this same path will not work on
+                                            # your PC (unless you copy/pasted the icon files to your C:\TMP directory
+                                            # on a Windows machine).
+                                            # Another thing to note, the icon image on the taskbark will remain as a
+                                            # Python icon until/unless you roll the script into an exe. 
 
 # create base widgets...
 lbl_dumblabel = ttk.Label(root, text="Dumb Label...")
